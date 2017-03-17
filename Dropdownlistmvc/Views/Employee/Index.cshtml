@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Dropdownlistmvc.Data.Employee>
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+<h2>Employees</h2>
+
+<p>
+    @Html.ActionLink(" New", "AddEmployee",null, new { @class = "btn btn-primary glyphicon glyphicon-plus" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenderId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salary)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genders.GenderName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salary)
+        </td>
+        
+        <td>
+            @Html.ActionLink(" ", "Delete", new { Id = item.Id }, new {@id="btnDelete", @class = "btn btn-danger glyphicon glyphicon-remove" }) |
+            @Html.ActionLink(" Edit", "Edit", new {Id=item.Id }, new { @class = "btn btn-primary glyphicon glyphicon-ok" }) 
+        
+        </td>
+    </tr>
+}
+
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function(){
+            $("#btnDelete").click(function () {$.notify("Hello World");});
+        });
+    </script>
+}
