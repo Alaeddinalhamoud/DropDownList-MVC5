@@ -52,6 +52,7 @@ namespace Dropdownlistmvc.Controllers
             if (ModelState.IsValid)
             {
                 EmpRepository.Save(data);
+                TempData["message"] = "Save";
                 return RedirectToAction("Index");
             }
             //Refill DropDL again 
@@ -66,7 +67,7 @@ namespace Dropdownlistmvc.Controllers
                 HttpNotFound();
             }
             EmpRepository.Delete(Id);
-
+            TempData["message"] = "Deleted";
             return RedirectToAction("Index");
         }
     }

@@ -43,7 +43,7 @@
         </td>
         
         <td>
-            @Html.ActionLink(" ", "Delete", new { Id = item.Id }, new {@id="btnDelete", @class = "btn btn-danger glyphicon glyphicon-remove" }) |
+            @Html.ActionLink(" ", "Delete", new { Id = item.Id }, new {  @class = "btn btn-danger glyphicon glyphicon-remove" }) |
             @Html.ActionLink(" Edit", "Edit", new {Id=item.Id }, new { @class = "btn btn-primary glyphicon glyphicon-ok" }) 
         
         </td>
@@ -54,8 +54,18 @@
 
 @section Scripts {
     <script>
-        $(document).ready(function(){
-            $("#btnDelete").click(function () {$.notify("Hello World");});
+
+
+        $(document).ready(function () {
+            if ('@TempData["message"]' == "Deleted") {
+               $.notify("Warning: your record has been deleted successfully", "warn");
+            }
+            if ('@TempData["message"]' == "Save"){
+                $.notify("your record has been Saved successfully", "success");
+
+            }
         });
+
+
     </script>
 }
